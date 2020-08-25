@@ -7,6 +7,10 @@ verify_ssl = true
 
 [packages]
 pytest = "*"
+unidecode = "*"
+autopep8 = "*"
+flake8 = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"

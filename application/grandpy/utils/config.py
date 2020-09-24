@@ -115,6 +115,7 @@ class GmgeoParams:
        """Class to encapsulate parameters for Google geocoding Api"""
 
        GMGEO_KEY = os.environ.get('Gmgeo_key')
+       GMAPS_KEY = os.environ.get('Gmaps_key')
        ENDPOINT = "https://maps.googleapis.com/maps/api/geocode/json?"
 
 class WikiParams:
@@ -145,4 +146,7 @@ class WikiParams:
               }
               return params
 
-              
+class GmapsParams:
+       """Class to encapsulate parameters for Google maps Api"""
+
+       GMAPS_KEY = os.environ.get('Gmaps_key')

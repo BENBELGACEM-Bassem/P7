@@ -21,12 +21,17 @@ class GmGeoApi:
             GmgeoParams.ENDPOINT,
             params=kwargs)
         # Managing non ok status, for debugging purpose
-        if response.json().get('status') != 'OK':
-            print("Oups ! Something went wrong," + \
-                  f" we have {response.json().get('status')}" + \
-                  " from geocoding Api")
-            return None
-        return response.json()
+        try:
+            if response.json().get('status') != 'OK':
+                return ("Oups ! Something went wrong," + \
+                      f" we have {response.json().get('status')}" + \
+                      " from geocoding Api")
+            else:
+                return response.json()
+
+        except BaseException:
+            return "Something went wrong on the network connexion "
+
 
     def get_address(self):
         """Extract address from geocoding Api response"""
@@ -34,7 +39,7 @@ class GmGeoApi:
         geographic_coordinates = GmGeoApi.fetch_gmgeo(
             address=parse(self.user_query), key=GmgeoParams.GMGEO_KEY)
         # Make sure we have an ok status response
-        if geographic_coordinates:
+        if not isinstance((geographic_coordinates), str):
             address = geographic_coordinates["results"][0].get(
                 "formatted_address")
             if address != "":
@@ -47,12 +52,12 @@ class GmGeoApi:
         geographic_coordinates = GmGeoApi.fetch_gmgeo(
             address=parse(self.user_query), key=GmgeoParams.GMGEO_KEY)
         # Make sure we have an ok status response
-        if geographic_coordinates:
+        if not isinstance((geographic_coordinates), str):
             latitude = geographic_coordinates["results"][0].get(
                 "geometry").get("location").get("lat")
             longitude = geographic_coordinates["results"][0].get(
                 "geometry").get("location").get("lng")
-            if latitude !=""  and longitude!="" :
+            if latitude != "" and longitude != "":
                 return latitude, longitude
         return None
 
@@ -75,7 +80,7 @@ class WikiApi:
             else:
                 return response.json()
         except BaseException:
-            return "Something went wrong on the server side "
+            return "Something went wrong on the network connexion "
 
     @classmethod
     def get_page_id(cls, latitude, longitude):
@@ -106,11 +111,23 @@ class WikiApi:
                 'pages').get(str(page_id)).get('extract')
            # Make sure 'extract' key is not related to an empty value
             if location_data != "":
-                # Get only the first part of the response to avoid being long
-                data_split = location_data.split('\n\n')
-                return data_split[0]
+                return location_data
             return 'No data to be extracted for this place !'
-        # In case of a warning, an error or a server fail
+        # In case of a warning, an error a server fail or connection off
         return extracted_data
 
-
+    @classmethod
+    def get_url(cls, page_id):
+        """Get a wikipedia link for the location"""
+        extracted_data = cls.fetch_wiki(
+            **WikiParams.define_extraction_params(page_id))
+        # Make sure that we don't have a warning or an error
+        if not isinstance((extracted_data), str):
+            url = extracted_data.get('query').get(
+                'pages').get(str(page_id)).get('fullurl')
+           # Make sure 'url' key is not related to an empty value
+            if url != "":
+                return url
+            return 'No url to be extracted for this place !'
+        # In case of a warning, an error, a server fail or connection off
+        return extracted_data

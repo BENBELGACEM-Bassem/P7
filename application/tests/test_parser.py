@@ -25,7 +25,7 @@ def test_extract_relevant_sentence_from_parses_the_sentence():
 
 def test_extract_relevant_sentence_from_could_return_No_result():
 	result = QuestionParsing.extract_relevant_sentence_from("Bonjour grandpy, Paris stp ?")
-	assert result == "Oups, la question n'est claire !"
+	assert result == None
 
 def test_extract_irrelevant_words_from_eliminate_irrelevant_words():
 	result = QuestionParsing.extract_irrelevant_words_from("la ville de Paris,capitale, stp")

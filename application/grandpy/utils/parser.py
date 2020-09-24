@@ -42,7 +42,7 @@ class QuestionParsing:
         if match:
             # get the matching result as a string
             return match.group()
-        return "Oups, la question n'est claire !"
+        return None
 
     @staticmethod
     def extract_irrelevant_words_from(sentence):
@@ -65,4 +65,4 @@ def parse(user_query):
         key_word = QuestionParsing.extract_irrelevant_words_from(relevant_sentence)
         return key_word
     else:
-        return None
+        return "La question n'est pas claire! le parser ne trouve pas de match"

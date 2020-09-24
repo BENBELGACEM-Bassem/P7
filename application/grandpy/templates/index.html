@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/673ebaf3e5.js" crossorigin="anonymous"></script>
+
     <style>
       #header{
         background: url({{url_for('static', filename='img/header.jpeg')}});
@@ -17,21 +18,29 @@
         background-size: cover;
         height: 7rem ;
       }
-      #tagline{
+      #welcoming_message{
         font-family: 'Architects Daughter', cursive;
         font-size: 2rem;
       }
 
-      #response{
+      #chat_zone{
         font-family: 'Architects Daughter', cursive;
         font-size: 2rem;
         height: 30rem;
+        overflow: scroll;
+        /*width: 50rem;*/
       }
+
+      #chat_zone div{
+        margin: 0.5rem;
+      }
+
       #question{
         font-family: 'Architects Daughter', cursive;
         font-size: 1rem;
         height: 3rem;
       }
+
       #footer{
         font-family: 'Architects Daughter', cursive;
         font-size: 1rem;
@@ -49,15 +58,15 @@
       <div id="header" class="jumbotron jumbotron-fluid text-center text-top pt-0">
         <div class="container">
           <h1><i class="fas fa-robot mr-3"></i> GrandPy, le papy bot</h1>
-          <p id="tagline">Enfin, te voilà!</p>
+          <p id="welcoming_message">Enfin, te voilà!</p>
         </div>
       </div> 
 
-      <!-- chat zone -->
-<div id="chat_zone" class="container">
+      <!-- core of the page -->
+<div id="core" class="container">
 
-  <div id="response" class="row bg-light text-dark text-left border border-info mb-1">
-    <div id="message_acceuil" class="m-3">
+  <div id="chat_zone" class="row bg-light text-dark text-left border border-info mb-1 justify-content-around align-items-start">
+    <div id="tagline">
       <h5> "Bonjour petit, je suis Papy bot, je connais le monde comme ma poche. Quel lieu veux tu que je te trouve ?"</h5>
     </div>
   </div>
@@ -81,5 +90,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <!-- Axios CDN and app js file -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/grandpy.js')}}"></script>
+    <!-- google api link, set french zone and language -->
+    <script defer src="https://maps.googleapis.com/maps/api/js?key={{key}}&language=fr&region=FR"></script>
+
   </body>
 </html>

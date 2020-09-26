@@ -5,11 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS, google font and fontawosome link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/673ebaf3e5.js" crossorigin="anonymous"></script>
 
+    <!-- CSS properties -->
     <style>
       #header{
         background: url({{url_for('static', filename='img/header.jpeg')}});
@@ -28,7 +29,6 @@
         font-size: 2rem;
         height: 30rem;
         overflow: scroll;
-        /*width: 50rem;*/
       }
 
       #chat_zone div{
@@ -50,6 +50,7 @@
     </style>
 
     <title>GrandPy robot</title>
+
   </head>
   <body>
 
@@ -63,27 +64,26 @@
       </div> 
 
       <!-- core of the page -->
-<div id="core" class="container">
+    <div id="core" class="container">
 
-  <div id="chat_zone" class="row bg-light text-dark text-left border border-info mb-1 justify-content-around align-items-start">
-    <div id="tagline">
-      <h5> "Bonjour petit, je suis Papy bot, je connais le monde comme ma poche. Quel lieu veux tu que je te trouve ?"</h5>
+      <div id="chat_zone" class="row bg-light text-dark text-left border border-info mb-1 justify-content-around align-items-start">
+        <div id="tagline" class="col-12">
+          <h5> Bonjour petit, je suis Papy bot, je connais le monde comme ma poche. Quel lieu veux tu que je te trouve ?</h5>
+        </div>
+      </div>
+
+      <form id="question" action="home" method="GET" class="row text-dark my-1 justify-content-between align-items-center">
+        <input id="user_input" type="text" name="question" placeholder="Une question? C'est ici" class="col-lg-10 border border-info text-left">
+        <input id="boutton_envoi" type="submit" value="Envoyer" class="col-lg-2 border border-info text-center">
+      </form>
+
+      <div id="footer" class="row mt-2 justify-content-around align-items-center">
+        <button id="link_repository" type="button" class="border col-lg-2 btn btn-link" onclick="location.href='https://github.com/BENBELGACEM-Bassem'">GitHub</button>
+        <button id="link_repository" type="button" class="border col-lg-2 btn btn-link" onclick="location.href='https://www.linkedin.com/in/bassem-benbelgacem-358217a2/'">linked-in</button>
+        <div id="developer_name" class="border col-lg-6 text-dark text-center">Bassem BEN BELGACEM</div>
+      </div>
+
     </div>
-  </div>
-
-  <form id="question" action="home" method="GET" class="row text-dark my-1 justify-content-between align-items-center">
-    <input id="user_input" type="text" name="question" placeholder="Une question? C'est ici" class="col-lg-10 border border-info text-left">
-    <input id="boutton_envoi" type="submit" value="Envoyer" class="col-lg-2 border border-info text-center">
-  </form>
-
-  <div id="footer" class="row mt-2 justify-content-around align-items-center">
-    <button id="link_repository" type="button" class="border col-lg-2 btn btn-link" onclick="location.href='https://github.com/BENBELGACEM-Bassem'">GitHub</button>
-    <button id="link_repository" type="button" class="border col-lg-2 btn btn-link" onclick="location.href='https://www.linkedin.com/in/bassem-benbelgacem-358217a2/'">linked-in</button>
-    <div id="developer_name" class="border col-lg-6 text-dark text-center">Bassem BEN BELGACEM</div>
-  </div>
-
-
-</div>
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

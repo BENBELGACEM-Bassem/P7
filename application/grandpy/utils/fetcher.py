@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python3
+# coding: utf-8
+
 """Module to retrieve data from external API's"""
 
 import requests
@@ -23,15 +25,14 @@ class GmGeoApi:
         # Managing non ok status, for debugging purpose
         try:
             if response.json().get('status') != 'OK':
-                return ("Oups ! Something went wrong," + \
-                      f" we have {response.json().get('status')}" + \
-                      " from geocoding Api")
+                return ("Oups ! Something went wrong," +
+                        f" we have {response.json().get('status')}" +
+                        " from geocoding Api")
             else:
                 return response.json()
 
         except BaseException:
             return "Something went wrong on the network connexion "
-
 
     def get_address(self):
         """Extract address from geocoding Api response"""
@@ -60,6 +61,7 @@ class GmGeoApi:
             if latitude != "" and longitude != "":
                 return latitude, longitude
         return None
+
 
 class WikiApi:
     """Class to interface with Media wiki Api"""
@@ -109,7 +111,7 @@ class WikiApi:
         if not isinstance((extracted_data), str):
             location_data = extracted_data.get('query').get(
                 'pages').get(str(page_id)).get('extract')
-           # Make sure 'extract' key is not related to an empty value
+            # Make sure 'extract' key is not related to an empty value
             if location_data != "":
                 return location_data
             return 'No data to be extracted for this place !'
@@ -125,7 +127,7 @@ class WikiApi:
         if not isinstance((extracted_data), str):
             url = extracted_data.get('query').get(
                 'pages').get(str(page_id)).get('fullurl')
-           # Make sure 'url' key is not related to an empty value
+            # Make sure 'url' key is not related to an empty value
             if url != "":
                 return url
             return 'No url to be extracted for this place !'

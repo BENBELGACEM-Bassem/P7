@@ -1,6 +1,7 @@
-"""Main module for Granpy website"""
+#! /usr/bin/env python3
+# coding: utf-8
 
-import os
+"""Main module for Granpy website"""
 
 from flask import render_template, url_for, request, jsonify
 
@@ -9,6 +10,7 @@ from .app import app
 from .utils.main import get_data_for
 
 from .utils.config import GmapsParams
+
 
 @app.route("/", methods=['GET'])
 @app.route("/home", methods=['GET'])
@@ -24,7 +26,6 @@ def treat_request():
     get adress and coordinates from GoogleMaps for this place
     and call MediaWiki API to extract its description.
     """
-
     # Retrieve request from the browser
     user_request = request.form["question"]
     # Process the query on the backend side

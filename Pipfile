@@ -12,6 +12,7 @@ pylint = "*"
 requests = "*"
 flask = "*"
 gunicorn = "*"
+unidecode = "*"
 
 [requires]
 python_version = "3.8"

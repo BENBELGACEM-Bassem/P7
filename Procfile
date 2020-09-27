@@ -1,2 +1,2 @@
-web: gunicorn application.grandpy.views:app
+web: gunicorn run:app
 

@@ -1,1 +1,1 @@
-web: gunicorn --chdir application.grandpy.app:app
+web: gunicorn run:app

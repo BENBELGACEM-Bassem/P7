@@ -1,1 +1,1 @@
-web: gunicorn bbbgrandpy:app
+web: gunicorn bbbgrandpy:application

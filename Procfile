@@ -1,1 +1,2 @@
-web: gunicorn --chdir application.grandpy.views:app
+web: gunicorn application:app
+init: FLASK_APP=run.py

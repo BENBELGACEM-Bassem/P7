@@ -1,1 +1,1 @@
-web: gunicorn application.gradpy.views:app
+web: gunicorn application.grandpy.views:app
